@@ -1,0 +1,9 @@
+.blog__grid { display: grid; grid-template-columns: repeat(1,minmax(0,1fr)); gap: 22px; }
+@media (min-width: 900px) { .blog__grid { grid-template-columns: repeat(3,minmax(0,1fr)); } }
+.blog__card { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 16px; padding: 20px; box-shadow: 0 8px 20px rgba(10,31,77,.06); transition: transform .15s ease, box-shadow .15s ease; }
+.blog__card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(10,31,77,.1); }
+.blog__title { font-weight: 800; color: var(--blue-800); margin-bottom: 8px; }
+.blog__desc { color: var(--text-muted); margin-bottom: 14px; }
+.blog__link { color: var(--blue-700); text-decoration: none; font-weight: 700; }
+.blog__link:hover { color: var(--blue-900); }
+

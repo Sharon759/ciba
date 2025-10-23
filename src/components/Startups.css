@@ -1,0 +1,7 @@
+.startups { background: #fff; }
+.startups__grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+@media (min-width: 900px) { .startups__grid { grid-template-columns: repeat(4,minmax(0,1fr)); } }
+.startup { background: #fff; border: 1px solid var(--blue-100); border-radius: 16px; padding: 16px; text-align: center; box-shadow: 0 10px 24px rgba(10,31,77,.06); }
+.startup__logo { width: 88px; height: 44px; background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 10px; margin: 0 auto 10px; }
+.startup__name { font-weight: 800; color: var(--blue-900); }
+

@@ -1,0 +1,12 @@
+.sc-backdrop { position: fixed; inset: 0; background: rgba(10, 20, 40, 0.55); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 80; }
+.sc-modal { width: 100%; max-width: 560px; background: #fff; border: 1px solid var(--blue-100); border-radius: 16px; box-shadow: 0 20px 60px rgba(10,31,77,.25); padding: 22px; }
+.sc-title { margin: 0 0 6px 0; color: var(--blue-900); }
+.sc-sub { margin: 0 0 16px 0; color: var(--text-muted); }
+.sc-form { display: flex; flex-direction: column; gap: 12px; }
+.sc-row { display: flex; flex-direction: column; gap: 6px; }
+.sc-row label { font-weight: 700; color: var(--blue-800); font-size: 13px; }
+.sc-row input, .sc-row select, .sc-row textarea { padding: 10px 12px; border: 1px solid #dfe6ff; border-radius: 10px; outline: none; font-size: 14px; }
+.sc-row input:focus, .sc-row select:focus, .sc-row textarea:focus { border-color: var(--blue-600); box-shadow: 0 0 0 4px rgba(37,99,235,.12); }
+.sc-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
+.sc-success { text-align: center; color: var(--blue-800); font-weight: 800; padding: 40px 0; }
+

@@ -1,0 +1,107 @@
+:root {
+  --blue-950: #030B27;
+  --blue-900: #0B1F4D;
+  --blue-800: #12327A;
+  --blue-700: #1E40AF;
+  --blue-600: #2563EB;
+  --blue-300: #93C5FD;
+  --blue-100: #E6EEFF;
+  --blue-50: #F3F6FF;
+}
+
+.mentors-section {
+  padding: 80px 20px;
+  background: var(--blue-50);
+  text-align: center;
+}
+
+.mentors-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--blue-950);
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.mentors-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--blue-600);
+  margin: 15px auto 0;
+  border-radius: 2px;
+}
+
+.mentors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mentor-card {
+  background: linear-gradient(145deg, var(--blue-700), var(--blue-800));
+  border-radius: 20px;
+  padding: 25px 15px 20px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.mentor-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+}
+
+.mentor-avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 4px solid var(--blue-300);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mentor-card:hover .mentor-avatar {
+  transform: scale(1.1) rotate(3deg);
+  box-shadow: 0 0 15px var(--blue-300);
+}
+
+.mentor-info {
+  text-align: center;
+}
+
+.mentor-name {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.mentor-role {
+  font-size: 1rem;
+  color: var(--blue-100);
+  margin-bottom: 15px;
+}
+
+.mentor-socials {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 1.2rem;
+}
+
+.mentor-socials a {
+  color: var(--blue-300);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.mentor-socials a:hover {
+  transform: scale(1.3);
+  color: var(--blue-600);
+}

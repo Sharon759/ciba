@@ -1,0 +1,333 @@
+/* General Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: #f5f5f5;
+  color: #1f2937;
+}
+
+/* Section Styling */
+.incubated-graduated {
+  position: relative;
+  padding: 4rem 1rem;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* Background Gradients */
+.bg-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.bg-gradient--1 {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+}
+
+.bg-gradient--2 {
+  background: linear-gradient(45deg, rgba(16, 185, 129, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+  opacity: 0.7;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Section Block */
+.section-block {
+  margin-bottom: 4rem;
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  color: #4b5563;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #e0e7ff;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1e40af;
+  margin-bottom: 1rem;
+}
+
+.badge--success {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1e40af;
+}
+
+.badge-dot--success {
+  background: #15803d;
+}
+
+/* Startup Grid */
+.startup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Startup Card */
+.startup-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.startup-card--incubated {
+  border: 1px solid #e0e7ff;
+}
+
+.startup-card--graduated {
+  border: 1px solid #dcfce7;
+}
+
+.startup-card:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Glow */
+.card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), transparent);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.card-glow--success {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), transparent);
+}
+
+/* Card Shine */
+.card-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card-shine--success {
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), transparent);
+}
+
+/* Card Front */
+.card-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.card-logo img {
+  width: 80px;
+  height: 80px;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.card-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #4b5563;
+  max-width: 200px;
+}
+
+.card-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #1e40af;
+  font-weight: 500;
+}
+
+.card-status--success {
+  color: #15803d;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #1e40af;
+}
+
+.status-dot--active {
+  background: #1e40af;
+}
+
+.status-dot--success {
+  background: #15803d;
+}
+
+/* Card Back */
+.card-back {
+  position: absolute;
+  inset: 0;
+  background: #1e40af;
+  color: #ffffff;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.card-back--graduated {
+  background: #15803d;
+}
+
+.card-back-content {
+  text-align: center;
+}
+
+.card-back-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.card-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.card-link--website {
+  background: #ffffff;
+  color: #1e40af;
+}
+
+.card-link--website:hover {
+  background: #f3f4f6;
+}
+
+.card-link--instagram {
+  background: #ffffff;
+  color: #1e40af;
+}
+
+.card-link--instagram:hover {
+  background: #f3f4f6;
+}
+
+.card-link--learn {
+  background: #ffffff;
+  color: #1e40af;
+  border: none;
+  cursor: pointer;
+}
+
+.card-link--learn:hover {
+  background: #f3f4f6;
+}
+
+/* Section Divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #d1d5db, transparent);
+  margin: 3rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
+  .startup-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .startup-card {
+    padding: 1rem;
+  }
+
+  .card-logo img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .card-name {
+    font-size: 1.25rem;
+  }
+
+  .card-back-title {
+    font-size: 1.25rem;
+  }
+}
