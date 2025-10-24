@@ -22,6 +22,7 @@ function App() {
      
         <About />
         <Gallery/>
+        <Partners/>
         <Mission />
   
        
