@@ -1,107 +1,341 @@
-:root {
-  --blue-950: #030B27;
-  --blue-900: #0B1F4D;
-  --blue-800: #12327A;
-  --blue-700: #1E40AF;
-  --blue-600: #2563EB;
-  --blue-300: #93C5FD;
-  --blue-100: #E6EEFF;
-  --blue-50: #F3F6FF;
-}
+/* ============================================
+   MENTORS SECTION - MINIMAL & ELEGANT DESIGN
+   ============================================ */
 
+/* Section Container */
 .mentors-section {
-  padding: 80px 20px;
-  background: var(--blue-50);
-  text-align: center;
-}
-
-.mentors-title {
-  font-size: 3rem;
-  font-weight: 700;
-  color: var(--blue-950);
-  margin-bottom: 50px;
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 6rem 1.5rem;
   position: relative;
 }
 
-.mentors-title::after {
-  content: '';
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: var(--blue-600);
-  margin: 15px auto 0;
-  border-radius: 2px;
-}
-
-.mentors-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  max-width: 1200px;
+.mentors-container {
+  max-width: 1280px;
   margin: 0 auto;
 }
 
-.mentor-card {
-  background: linear-gradient(145deg, var(--blue-700), var(--blue-800));
-  border-radius: 20px;
-  padding: 25px 15px 20px;
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  color: white;
-  position: relative;
-  overflow: hidden;
+/* ============================================
+   HEADER STYLES
+   ============================================ */
+
+.mentors-header {
+  text-align: center;
+  margin-bottom: 5rem;
 }
 
-.mentor-card:hover {
+.header-line {
+  width: 5rem;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #2563eb, transparent);
+  margin: 0 auto 2rem;
+  border-radius: 2px;
+}
+
+.mentors-title {
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.title-accent {
+  font-weight: 600;
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mentors-subtitle {
+  font-size: 1.125rem;
+  color: #64748b;
+  max-width: 42rem;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ============================================
+   GRID LAYOUT
+   ============================================ */
+
+.mentors-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 640px) {
+  .mentors-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mentors-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* ============================================
+   CARD STYLES
+   ============================================ */
+
+.mentor-card {
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+              0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.mentor-card:hover .card-inner {
   transform: translateY(-12px);
-  box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+  box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.15),
+              0 12px 24px -8px rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+/* Card Gradient Overlay */
+.card-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(37, 99, 235, 0) 0%, 
+    rgba(37, 99, 235, 0.03) 50%,
+    rgba(37, 99, 235, 0.08) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mentor-card:hover .card-gradient {
+  opacity: 1;
+}
+
+.card-content {
+  position: relative;
+  padding: 2rem 1.5rem;
+  z-index: 2;
+}
+
+/* ============================================
+   AVATAR STYLES
+   ============================================ */
+
+.avatar-wrapper {
+  position: relative;
+  width: 9rem;
+  height: 9rem;
+  margin: 0 auto 2rem;
+}
+
+.avatar-glow {
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(135deg, #60a5fa, #2563eb);
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(16px);
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.mentor-card:hover .avatar-glow {
+  opacity: 0.4;
 }
 
 .mentor-avatar {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 15px;
+  position: relative;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   background-size: cover;
   background-position: center;
-  border: 4px solid var(--blue-300);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 4px solid #f1f5f9;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
 }
 
 .mentor-card:hover .mentor-avatar {
-  transform: scale(1.1) rotate(3deg);
-  box-shadow: 0 0 15px var(--blue-300);
+  border-color: #dbeafe;
+  transform: scale(1.05);
 }
+
+/* ============================================
+   INFO STYLES
+   ============================================ */
 
 .mentor-info {
   text-align: center;
+  margin-bottom: 1.75rem;
 }
 
 .mentor-name {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  margin-bottom: 5px;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+}
+
+.mentor-card:hover .mentor-name {
+  color: #1e40af;
 }
 
 .mentor-role {
-  font-size: 1rem;
-  color: var(--blue-100);
-  margin-bottom: 15px;
+  font-size: 0.875rem;
+  color: #2563eb;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
+
+/* ============================================
+   SOCIAL LINKS
+   ============================================ */
 
 .mentor-socials {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  font-size: 1.2rem;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #f1f5f9;
 }
 
-.mentor-socials a {
-  color: var(--blue-300);
-  transition: transform 0.3s ease, color 0.3s ease;
+.social-link {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #f8fafc;
+  color: #2563eb;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  border: 1px solid transparent;
 }
 
-.mentor-socials a:hover {
-  transform: scale(1.3);
-  color: var(--blue-600);
+.social-link:hover {
+  background-color: #2563eb;
+  color: #ffffff;
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 8px 16px -4px rgba(37, 99, 235, 0.3);
+  border-color: #1e40af;
+}
+
+.social-link:active {
+  transform: translateY(-1px) scale(1.05);
+}
+
+/* ============================================
+   BOTTOM LINE ACCENT
+   ============================================ */
+
+.card-bottom-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #60a5fa, #2563eb, #1e40af);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 3;
+}
+
+.mentor-card:hover .card-bottom-line {
+  transform: scaleX(1);
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+
+.mentors-cta {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.cta-button {
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.01em;
+}
+
+.cta-button:hover {
+  background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+  box-shadow: 0 20px 35px -8px rgba(37, 99, 235, 0.4);
+  transform: translateY(-2px);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.3);
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .mentors-title {
+    font-size: 2.5rem;
+  }
+  
+  .mentors-section {
+    padding: 4rem 1rem;
+  }
+  
+  .mentors-header {
+    margin-bottom: 3rem;
+  }
+  
+  .avatar-wrapper {
+    width: 7.5rem;
+    height: 7.5rem;
+  }
+  
+  .card-content {
+    padding: 1.75rem 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mentors-title {
+    font-size: 2rem;
+  }
+  
+  .mentors-subtitle {
+    font-size: 1rem;
+  }
+  
+  .cta-button {
+    padding: 0.875rem 2rem;
+    font-size: 0.9375rem;
+  }
 }

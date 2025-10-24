@@ -19,13 +19,12 @@ function App() {
       <ScrollProgress />
       <Navbar />
         <Hero />
-      
+     
         <About />
-        
-         <Partners />
+        <Gallery/>
         <Mission />
-         
   
+       
       
         <Mentors />
         <Testimonials/>

@@ -1,156 +1,88 @@
 // Gallery.jsx
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import './Gallery.css';
 
-const ImageCard = ({ src, index, title, isLarge }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const [isHovered, setIsHovered] = useState(false);
-  
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 60, scale: 0.9 }}
-      animate={isInView ? { 
-        opacity: 1, 
-        y: 0, 
-        scale: 1,
-        transition: {
-          duration: 0.7,
-          delay: index * 0.15,
-          ease: [0.25, 0.46, 0.45, 0.94]
-        }
-      } : {}}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`gallery-card ${isLarge ? 'gallery-card-large' : ''} ${isHovered ? 'gallery-card-hovered' : ''}`}
-    >
-      <motion.div 
-        className="gallery-card-inner"
-        animate={{ scale: isHovered ? 1.05 : 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <img src={src} alt={title} className="gallery-image" />
-        
-        <motion.div 
-          className="gallery-overlay"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isHovered ? 1 : 0 }}
-          transition={{ duration: 0.3 }}
-        />
-        
-        <motion.div
-          className="gallery-content"
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ 
-            y: isHovered ? 0 : 30, 
-            opacity: isHovered ? 1 : 0 
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          <h3 className="gallery-title">{title}</h3>
-          <p className="gallery-subtitle">Photography Collection</p>
-        </motion.div>
-
-        <motion.div
-          className="gallery-icon"
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ 
-            scale: isHovered ? 1 : 0,
-            rotate: isHovered ? 0 : -180
-          }}
-          transition={{ duration: 0.4, type: "spring" }}
-        >
-          <div className="gallery-icon-circle">
-            <svg className="gallery-icon-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-            </svg>
-          </div>
-        </motion.div>
-      </motion.div>
-    </motion.div>
-  );
-};
-
-export default function Gallery() {
-  const sectionRef = useRef(null);
+const Gallery = () => {
   const titleRef = useRef(null);
-  const isTitleInView = useInView(titleRef, { once: true });
+  const isTitleInView = useInView(titleRef, { once: true, amount: 0.5 });
 
   const images = [
-    { src: '/1.jpg', title: 'Masterpiece One', isLarge: true },
-    { src: '/2.jpg', title: 'Masterpiece Two', isLarge: false },
-    { src: '/3.jpg', title: 'Masterpiece Three', isLarge: false }
+    { id: 1, src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop', title: 'Business Innovation' },
+    { id: 2, src: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop', title: 'Team Collaboration' },
+    { id: 3, src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=600&fit=crop', title: 'Startup Growth' },
+    { id: 4, src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop', title: 'Creative Workspace' }
   ];
 
   return (
-    <section className="gallery-section" ref={sectionRef}>
-      <div className="gallery-bg">
-        <motion.div
-          className="gallery-blob gallery-blob-1"
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="gallery-blob gallery-blob-2"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            x: [0, -50, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
-
-      <div className="gallery-container">
+    <section className="gallery">
+      <div className="gallery__container">
         <motion.div
           ref={titleRef}
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isTitleInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="gallery-header"
+          transition={{ duration: 0.6 }}
+          className="gallery__header"
         >
-          <h2 className="gallery-heading">Our Gallery</h2>
-          <p className="gallery-description">Explore our stunning collection of photography</p>
+          <span className="gallery__badge">Gallery</span>
+          <h2 className="gallery__title">Our Work</h2>
+          <p className="gallery__description">
+            Moments that inspire and captivate
+          </p>
         </motion.div>
 
-        <div className="gallery-grid">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.1 }
+            }
+          }}
+          className="gallery__grid"
+        >
           {images.map((image, index) => (
-            <ImageCard
-              key={index}
-              src={image.src}
-              title={image.title}
-              index={index}
-              isLarge={image.isLarge}
-            />
+            <motion.div
+              key={image.id}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              className={`gallery__card ${
+                index === 0 ? 'gallery__card--large' : 
+                index === 3 ? 'gallery__card--wide' : ''
+              }`}
+            >
+              <div className="gallery__image-box">
+                <img src={image.src} alt={image.title} className="gallery__image" />
+                <div className="gallery__overlay">
+                  <h3 className="gallery__name">{image.title}</h3>
+                </div>
+              </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="gallery-footer"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="gallery__footer"
         >
-          <motion.button
-            className="gallery-button"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-          >
-            View More
-            <svg className="gallery-button-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          <button className="gallery__btn">
+            <span>View More</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
-          </motion.button>
+          </button>
         </motion.div>
       </div>
     </section>
   );
-}
+};
+
+export default Gallery;
