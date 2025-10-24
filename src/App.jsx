@@ -11,6 +11,7 @@ import Support from './components/Support.jsx';
 import Footer from './components/Footer.jsx';
 import ScrollProgress from './components/ScrollProgress.jsx';
 import Testimonials from './components/Testimonials.jsx';
+import Gallery from './components/Gallery.jsx';
 
 function App() {
   return (
@@ -20,10 +21,11 @@ function App() {
         <Hero />
       
         <About />
+        
          <Partners />
         <Mission />
          
-        <Services />
+  
       
         <Mentors />
         <Testimonials/>
