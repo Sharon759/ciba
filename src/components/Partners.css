@@ -1,374 +1,264 @@
-/* ========================================
-   Startups Marquee Section - Premium Design
-   ======================================== */
-
-.startups-marquee {
+/* Partners Section */
+.partners-section {
   position: relative;
-  padding: 6rem 0;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  min-height: 100vh;
+  background: #ffffff;
   overflow: hidden;
-  min-height: 400px; /* Increased for two rows */
+  padding: 100px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.startups-marquee::before {
-  content: '';
+/* Background Circles */
+.partners-bg-circle {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+  filter: blur(100px);
   pointer-events: none;
-  z-index: 1;
 }
 
-.container {
+.circle-top {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  right: -100px;
+}
+
+.circle-bottom {
+  width: 800px;
+  height: 800px;
+  bottom: -300px;
+  left: -200px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
+}
+
+/* Content */
+.partners-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2.5rem;
-  position: relative;
-  z-index: 2;
+  padding: 0 20px;
 }
 
-/* ========================================
-   Header Section
-   ======================================== */
-
-.marquee-header {
+/* Header */
+.partners-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 80px;
 }
 
-.marquee-badge {
+.partners-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.75rem;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
+  gap: 8px;
+  padding: 10px 24px;
+  background: rgba(59, 130, 246, 0.1);
   border: 1px solid rgba(59, 130, 246, 0.2);
   border-radius: 50px;
-  font-size: 0.875rem;
+  font-size: 12px;
   font-weight: 600;
-  color: #000000; /* Black text */
-  letter-spacing: 0.025em;
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
-  margin-bottom: 2rem;
+  letter-spacing: 2px;
+  color: #3b82f6;
+  backdrop-filter: blur(10px);
+  margin-bottom: 24px;
 }
 
-.badge-dot {
+.dot {
   width: 8px;
   height: 8px;
-  background: linear-gradient(135deg, #080808, #0f0f0f);
+  background: #3b82f6;
   border-radius: 50%;
   animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { 
-    opacity: 1; 
-    transform: scale(1); 
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
   }
-  50% { 
-    opacity: 0.5; 
-    transform: scale(1.3); 
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
   }
 }
 
-.marquee-title {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 900;
-  font-family: 'Inter', sans-serif;
-  color: #000000; /* Black text */
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  margin-bottom: 1.5rem;
+.partners-title {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #1f2937;
+  margin: 0 0 20px 0;
+  letter-spacing: -1px;
 }
 
-.marquee-title .highlight {
-  background: linear-gradient(135deg, #141515 0%, #0e0e0e 100%);
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6, #2563eb, #1d4ed8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.marquee-subtitle {
-  font-size: 1.25rem;
-  color: #000000; /* Black text */
-  line-height: 1.7;
-  max-width: 800px;
+.partners-desc {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #6b7280;
+  max-width: 600px;
   margin: 0 auto;
-  font-weight: 400;
 }
 
-/* ========================================
-   Marquee Wrapper and Rows
-   ======================================== */
+/* Marquee Container */
+.marquee-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 60px;
+}
 
 .marquee-wrapper {
   position: relative;
-  height: 360px; /* Adjusted for two rows */
-}
-
-.marquee-row {
-  position: absolute;
-  width: 100%;
-  height: 160px; /* Half the height for each row */
-  margin: 1.5rem 0;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 30px;
-  padding: 1.5rem;
-  backdrop-filter: blur(20px);
-  box-shadow: 
-    0 25px 70px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  width: 100%;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
 }
 
-.marquee-row:first-child {
-  top: 0;
-}
-
-.marquee-row:last-child {
-  bottom: 0;
-}
-
-.marquee-track {
+.marquee {
   display: flex;
-  height: 100%;
-  gap: 3rem;
-  will-change: transform;
+  gap: 30px;
+  width: fit-content;
 }
 
-.startup-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 250px;
-  height: 120px;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.8);
+/* Partner Card */
+.partner-card {
+  flex-shrink: 0;
+  width: 280px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   border-radius: 20px;
-  border: 1px solid rgba(59, 130, 246, 0.1);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.startup-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  transition: left 0.6s ease;
-}
-
-.startup-item:hover::before {
-  left: 100%;
-}
-
-.startup-item:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 
-    0 15px 30px rgba(59, 130, 246, 0.15),
-    0 0 0 1px rgba(59, 130, 246, 0.2);
-  border-color: rgba(59, 130, 246, 0.3);
-}
-
-.startup-logo {
-  width: 120px;
-  height: 60px;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(59, 130, 246, 0.05);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.startup-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: grayscale(80%);
   transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.startup-item:hover .startup-logo img {
-  filter: grayscale(0%);
+.partner-card:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.25);
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.partner-card:hover .image-wrapper img {
   transform: scale(1.1);
 }
 
-.startup-name {
-  font-size: 1rem;
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(59, 130, 246, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.partner-card:hover .overlay {
+  opacity: 1;
+}
+
+.partner-card h3 {
+  padding: 20px;
+  margin: 0;
+  font-size: 18px;
   font-weight: 600;
-  color: #000000; /* Black text */
+  color: #1f2937;
   text-align: center;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.5px;
+  transition: color 0.3s ease;
 }
 
-/* ========================================
-   Responsive Design
-   ======================================== */
-
-@media (max-width: 1200px) {
-  .marquee-row {
-    height: 140px;
-  }
-  
-  .startup-item {
-    min-width: 220px;
-    height: 110px;
-  }
-  
-  .startup-logo {
-    width: 100px;
-    height: 50px;
-  }
+.partner-card:hover h3 {
+  color: #3b82f6;
 }
 
-@media (max-width: 992px) {
-  .startups-marquee {
-    padding: 4rem 0;
-  }
-  
-  .marquee-row {
-    height: 120px;
-    margin: 1rem 0;
-  }
-  
-  .startup-item {
-    min-width: 200px;
-    height: 100px;
-    padding: 1rem;
-  }
-  
-  .startup-logo {
-    width: 90px;
-    height: 45px;
-  }
-  
-  .marquee-title {
-    font-size: 3rem;
-  }
-}
-
+/* Responsive */
 @media (max-width: 768px) {
-  .startups-marquee {
-    padding: 3rem 0;
+  .partners-section {
+    padding: 60px 0;
   }
-  
-  .marquee-header {
-    margin-bottom: 2rem;
+
+  .partners-title {
+    font-size: 36px;
   }
-  
-  .marquee-wrapper {
-    height: 300px;
+
+  .partners-desc {
+    font-size: 16px;
   }
-  
-  .marquee-row {
-    height: 140px;
-    margin: 0.5rem 0;
+
+  .partner-card {
+    width: 220px;
   }
-  
-  .startup-item {
-    min-width: 180px;
-    height: 90px;
-    padding: 0.75rem;
+
+  .image-wrapper {
+    height: 160px;
   }
-  
-  .startup-logo {
-    width: 80px;
-    height: 40px;
+
+  .marquee-container {
+    gap: 20px;
   }
-  
-  .startup-name {
-    font-size: 0.9rem;
-  }
-  
-  .marquee-title {
-    font-size: 2.5rem;
-  }
-  
-  .marquee-subtitle {
-    font-size: 1.125rem;
+
+  .marquee {
+    gap: 20px;
   }
 }
 
-@media (max-width: 576px) {
-  .container {
-    padding: 0 1.25rem;
+@media (max-width: 480px) {
+  .partners-title {
+    font-size: 28px;
   }
-  
-  .marquee-row {
-    height: 120px;
-  }
-  
-  .startup-item {
-    min-width: 150px;
-    height: 80px;
-  }
-  
-  .startup-logo {
-    width: 70px;
-    height: 35px;
-  }
-  
-  .startup-name {
-    font-size: 0.85rem;
-  }
-}
 
-/* ========================================
-   Performance & Accessibility
-   ======================================== */
+  .partner-card {
+    width: 180px;
+  }
 
-.startups-marquee,
-.marquee-track,
-.startup-item {
-  will-change: transform;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
+  .image-wrapper {
+    height: 130px;
+  }
 
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation-duration: 0.01ms !important;
-    transform: none !important;
-  }
-  
-  .startup-item {
-    transition: none !important;
-  }
-  
-  .badge-dot {
-    animation: none !important;
-  }
-}
-
-@media print {
-  .marquee-row,
-  .badge-dot {
-    display: none;
-  }
-  
-  .startups-marquee {
-    background: #ffffff !important;
-  }
-  
-  .startup-item {
-    background: none !important;
-    border: 1px solid #e2e8f0 !important;
-    box-shadow: none !important;
+  .partner-card h3 {
+    font-size: 16px;
+    padding: 15px;
   }
 }

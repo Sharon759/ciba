@@ -1,119 +1,141 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-import './Partners.css';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import "./Partners.css";
 
-// Dummy data for incubated startups (replace with real data)
-const startups = [
-  { id: 1, name: 'InnoTech Solutions', logo: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=150&h=50&fit=crop' },
-  { id: 2, name: 'GreenPulse Energy', logo: 'https://images.unsplash.com/photo-1551650975-87deedd944c1?w=150&h=50&fit=crop' },
-  { id: 3, name: 'HealthSync AI', logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=150&h=50&fit=crop' },
-  { id: 4, name: 'EduFuture Platforms', logo: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=150&h=50&fit=crop' },
-  { id: 5, name: 'SmartCity Innovations', logo: 'https://images.unsplash.com/photo-1551650975-87deedd944c1?w=150&h=50&fit=crop' },
-  { id: 6, name: 'AgriGrow Tech', logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=150&h=50&fit=crop' },
-  { id: 7, name: 'FinSecure Labs', logo: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=150&h=50&fit=crop' },
-  { id: 8, name: 'CreativeWave Media', logo: 'https://images.unsplash.com/photo-1551650975-87deedd944c1?w=150&h=50&fit=crop' },
+const partnersTop = [
+  { id: 1, name: "InnoVentures", img: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=400&h=400&fit=crop" },
+  { id: 2, name: "TechNova Labs", img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=400&fit=crop" },
+  { id: 3, name: "FutureScale", img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=400&fit=crop" },
+  { id: 4, name: "NextGen Capital", img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=400&fit=crop" },
+  { id: 5, name: "Quantum Ventures", img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=400&fit=crop" },
+  { id: 6, name: "BlueHorizon Fund", img: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=400&fit=crop" },
+  { id: 7, name: "PrimeInvest Group", img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=400&fit=crop" },
+  { id: 8, name: "Stellar Partners", img: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=400&fit=crop" },
 ];
 
-// Duplicate array for infinite marquee effect
-const marqueeStartups = [...startups, ...startups];
+const partnersBottom = [
+  { id: 9, name: "Apex Innovations", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=400&fit=crop" },
+  { id: 10, name: "Zenith Capital", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=400&fit=crop" },
+  { id: 11, name: "Vertex Systems", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=400&fit=crop" },
+  { id: 12, name: "Pulse Ventures", img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=400&fit=crop" },
+  { id: 13, name: "Nexus Partners", img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&h=400&fit=crop" },
+  { id: 14, name: "Catalyst Group", img: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop" },
+  { id: 15, name: "Momentum Labs", img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=400&fit=crop" },
+  { id: 16, name: "Elevate Fund", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop" },
+];
 
-export default function StartupsMarquee() {
+const marqueePartnersTop = [...partnersTop, ...partnersTop];
+const marqueePartnersBottom = [...partnersBottom, ...partnersBottom];
+
+export default function PartnersMarquee() {
   const ref = useRef(null);
+  const [isPausedTop, setIsPausedTop] = useState(false);
+  const [isPausedBottom, setIsPausedBottom] = useState(false);
+  
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
-  // Parallax effect for section
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
-
-  // Marquee speed for two rows with offset
-  const xTop = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const xBottom = useTransform(scrollYProgress, [0, 1], [0, -110]); // Slight offset for second row
+  const y = useTransform(scrollYProgress, [0, 1], [0, -40]);
 
   return (
-    <section id="startups-marquee" className="startups-marquee" ref={ref} style={{ y }}>
-      <div className="container">
-        <div className="marquee-header">
-          <div className="marquee-badge">
-            <span className="badge-dot"></span>
-            Our Partners
-          </div>
-          <h2 className="marquee-title">
-            CIBA's <span className="highlight">Trusted Partners</span>
-          </h2>
-          <p className="marquee-subtitle">
-            Discover the esteemed partners collaborating with CIBA to foster innovation
-          </p>
+    <section className="partners-section" ref={ref}>
+      <div className="partners-bg-circle circle-top" />
+      <div className="partners-bg-circle circle-bottom" />
+
+      <motion.div style={{ y }} className="partners-content">
+        {/* Header */}
+        <div className="partners-header">
+          <motion.div
+            className="partners-badge"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <span className="dot" />
+            TRUSTED PARTNERS
+          </motion.div>
+
+          <motion.h2
+            className="partners-title"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            Powering Innovation <br />
+            <span className="gradient-text">Together</span>
+          </motion.h2>
+
+          <motion.p
+            className="partners-desc"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Collaborating with leading global innovators to accelerate growth
+            and inspire impactful change.
+          </motion.p>
         </div>
 
-        {/* Two Marquee Rows */}
-        <div className="marquee-wrapper">
+        {/* Marquee Rows */}
+        <div className="marquee-container">
           {/* Top Row */}
-          <div className="marquee-row">
-            <motion.div 
-              className="marquee-track"
-              style={{ x: xTop }}
-              animate={{ x: ["0%", "-100%"] }}
-              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          <div className="marquee-wrapper">
+            <motion.div
+              className="marquee"
+              animate={isPausedTop ? {} : { x: ["0%", "-50%"] }}
+              transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
             >
-              {marqueeStartups.map((startup, index) => (
-                <motion.div 
-                  key={`${startup.name}-top-${index}`}
-                  className="startup-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: false, amount: 0.5 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={{ 
-                    scale: 1.1, 
-                    y: -5,
-                    zIndex: 10,
-                    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
-                  }}
+              {marqueePartnersTop.map((partner, i) => (
+                <motion.div
+                  className="partner-card"
+                  key={`top-${i}`}
+                  whileHover={{ scale: 1.12, y: -8 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  onHoverStart={() => setIsPausedTop(true)}
+                  onHoverEnd={() => setIsPausedTop(false)}
                 >
-                  <div className="startup-logo">
-                    <img src={startup.logo} alt={startup.name} loading="lazy" />
+                  <div className="image-wrapper">
+                    <img src={partner.img} alt={partner.name} />
+                    <div className="overlay" />
                   </div>
-                  <div className="startup-name">{startup.name}</div>
+                  <h3>{partner.name}</h3>
                 </motion.div>
               ))}
             </motion.div>
           </div>
 
           {/* Bottom Row */}
-          <div className="marquee-row">
-            <motion.div 
-              className="marquee-track"
-              style={{ x: xBottom }}
-              animate={{ x: ["0%", "-100%"] }}
-              transition={{ duration: 42, repeat: Infinity, ease: "linear" }}
+          <div className="marquee-wrapper">
+            <motion.div
+              className="marquee"
+              animate={isPausedBottom ? {} : { x: ["-50%", "0%"] }}
+              transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
             >
-              {marqueeStartups.map((startup, index) => (
-                <motion.div 
-                  key={`${startup.name}-bottom-${index}`}
-                  className="startup-item"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: false, amount: 0.5 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={{ 
-                    scale: 1.1, 
-                    y: -5,
-                    zIndex: 10,
-                    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
-                  }}
+              {marqueePartnersBottom.map((partner, i) => (
+                <motion.div
+                  className="partner-card"
+                  key={`bottom-${i}`}
+                  whileHover={{ scale: 1.12, y: -8 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  onHoverStart={() => setIsPausedBottom(true)}
+                  onHoverEnd={() => setIsPausedBottom(false)}
                 >
-                  <div className="startup-logo">
-                    <img src={startup.logo} alt={startup.name} loading="lazy" />
+                  <div className="image-wrapper">
+                    <img src={partner.img} alt={partner.name} />
+                    <div className="overlay" />
                   </div>
-                  <div className="startup-name">{startup.name}</div>
+                  <h3>{partner.name}</h3>
                 </motion.div>
               ))}
             </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
